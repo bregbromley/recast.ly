@@ -1,10 +1,15 @@
-var VideoList = () => (
+import Search from './Search.js';
+import VideoListEntry from './VideoListEntry.js';
+import VideoPlayer from './VideoPlayer.js';
+import exampleVideoData from '../data/exampleVideoData.js';
+
+console.log(exampleVideoData);
+
+var VideoList = (props) => (
   <div className="video-list">
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
+    {props.videos.map(item =>
+      <VideoListEntry video ={item} />
+    )}
   </div>
 );
 
