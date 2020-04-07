@@ -8,7 +8,7 @@ console.log(exampleVideoData);
 var VideoList = (props) => (
   <div className="video-list">
     {props.videos.map(item =>
-      <VideoListEntry video ={item} />
+      <VideoListEntry video ={item} clickHandler={props.clickHandler}/>
     )}
   </div>
 );

@@ -4,9 +4,10 @@ import VideoListEntry from './VideoListEntry.js';
 import exampleVideoData from '../data/exampleVideoData.js';
 
 
+
 var VideoPlayer = (props) => {
 
-  var link = "https://www.youtube.com/embed/" + props.video.id.videoId + "?autoplay=1";
+  var link = 'https://www.youtube.com/embed/' + props.video.id.videoId;
 
   return (
     <div className="video-player">
