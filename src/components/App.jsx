@@ -17,6 +17,25 @@ class App extends React.Component {
     this.setState.bind(this);
   }
 
+  componentDidMount() {
+    this.getYouTubeVideos('dogs');
+  }
+
+  getYouTubeVideos(query) {
+    var options = {
+      key: YOUTUBE_API_KEY,
+      query: query,
+      max: '5'
+    };
+
+    this.props.SearchVideo(options, (videos) =>
+      this.setState({
+        allVideos: videos,
+        currentVideo: videos[0]
+      })
+    );
+  }
+
 
 
   titleClick(video) {
@@ -24,21 +43,6 @@ class App extends React.Component {
       currentVideo: video
     });
   }
-  componentDidMount() {
-    searchYouTube({
-      key: YOUTUBE_API_KEY,
-      query: 'dog'
-    }, function(items) {
-      this.setState({
-        allVideos: items,
-        currentVideo: items[0]
-      });
-      // console.log('items', items);
-      // this.state.allVideos = items;
-      // this.state.currentVideo = items[0];
-    });
-  }
-
 
   render() {
     var video;
@@ -47,7 +51,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search handleSearch={this.getYouTubeVideos.bind(this)}/>
           </div>
         </nav>
         <div className="row">
@@ -81,7 +85,7 @@ class App extends React.Component {
 //   </div>
 // );
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App SearchVideo = {searchYouTube}/>, document.getElementById('app'));
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined

@@ -13,7 +13,7 @@ var searchYouTube = (options, callback) => {
   var search = {};
   search.part = 'snippet';
   search.q = options.query;
-  search.maxResults = options.max;
+  search.maxResults = options.max || 5;
   search.videoEmbeddable = true;
   search.key = options.key;
   search.type = 'video';
